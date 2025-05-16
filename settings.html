@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings - Classgames</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --text-color: #f87171;
+    }
+
+    body.dark {
+      background-color: #000;
+      color: var(--text-color);
+    }
+
+    body.light {
+      background-color: #f9fafb;
+      color: #111;
+    }
+
+    select, button {
+      transition: all 0.3s;
+    }
+
+    body.dark select, body.dark button {
+      background-color: #1f2937;
+      color: var(--text-color);
+    }
+
+    body.light select, body.light button {
+      background-color: #fff;
+      color: #111;
+      border: 1px solid #ccc;
+    }
+
+    body.light a {
+      color: #444;
+    }
+
+    body.dark a {
+      color: var(--text-color);
+    }
+  </style>
+</head>
+<body class="min-h-screen px-6 py-10 transition-all" id="body">
+
+  <!-- Back Button -->
+  <a href="index.html" class="text-lg">&larr; Back to Home</a>
+
+  <!-- Settings Header -->
+  <h1 class="text-4xl font-bold mt-6 mb-8">⚙️ Settings</h1>
+
+  <div class="space-y-6 max-w-xl">
+
+    <!-- Text Color -->
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Text Color</h2>
+      <select id="colorPicker" class="p-2 rounded w-full">
+        <option value="#f87171">Red</option>
+        <option value="#34d399">Green</option>
+        <option value="#60a5fa">Blue</option>
+        <option value="#f9fafb">White</option>
+      </select>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Theme</h2>
+      <button id="toggleTheme" class="px-4 py-2 rounded">
+        Toggle Light/Dark Mode
+      </button>
+    </div>
+
+    <!-- Reset Button -->
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Reset Preferences</h2>
+      <button onclick="resetSettings()" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-500">
+        Reset
+      </button>
+    </div>
+
+    <!-- Save/Load Data -->
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Export / Import Settings</h2>
+      <button onclick="exportSaveData()" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-500 mb-2">
+        Export Save Data
+      </button>
+      <input type="file" id="importFile" accept=\"application/json\" class="block mt-2" />
+    </div>
+
+  </div>
+
+  <script>
+    const picker = document.getElementById('colorPicker');
+    const root = document.documentElement;
+
+    // Load saved text color
+    const savedColor = localStorage.getItem('classgames-text-color');
+    if (savedColor) {
+      root.style.setProperty('--text-color', savedColor);
+      picker.value = savedColor;
+    }
+
+    picker.addEventListener('change', () => {
+      const color = picker.value;
+      root.style.setProperty('--text-color', color);
+      localStorage.setItem('classgames-text-color', color);
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('classgames-theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+    } else {
+      document.body.classList.add('dark');
+    }
+
+    document.getElementById('toggleTheme').addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      document.body.classList.toggle('dark');
+      const newTheme = document.body.classList.contains('light') ? 'light' : 'dark';
+      localStorage.setItem('classgames-theme', newTheme);
+    });
+
+    function resetSettings() {
+      localStorage.removeItem('classgames-text-color');
+      localStorage.removeItem('classgames-theme');
+      location.reload();
+    }
+
+    function exportSaveData() {
+      const saveData = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        saveData[key] = localStorage.getItem(key);
+      }
+
+      const blob = new Blob([JSON.stringify(saveData, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'classgames-save.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('importFile').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          for (const key in data) {
+            localStorage.setItem(key, data[key]);
+          }
+          location.reload();
+        } catch (err) {
+          alert('Invalid save file.');
+        }
+      };
+      reader.readAsText(file);
+    });
+  </script>
+
+</body>
+</html>

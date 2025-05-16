@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classgames - Games</title>
+  <script>
+    // Theme toggle script
+    const theme = localStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", theme);
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    [data-theme="dark"] {
+      background-color: #000;
+      color: #ff4d4d;
+    }
+    [data-theme="light"] {
+      background-color: #fff;
+      color: #700000;
+    }
+
+    a {
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #ff9999;
+    }
+
+    .tile {
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    .tile:hover {
+      transform: scale(1.03);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start p-6">
+  <!-- Navigation -->
+  <header class="w-full flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold">Classgames</h1>
+    <div class="space-x-4">
+      <a href="index.html" class="text-lg hover:underline">Home</a>
+      <a href="settings.html" class="text-lg hover:underline">Settings</a>
+    </div>
+  </header>
+
+  <!-- Games List -->
+  <main class="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Cookie Clicker Tile -->
+    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
+      <a href="games/cookieclicker/index.html" class="block h-full">
+        <h2 class="text-xl font-semibold mb-1">Cookie Clicker</h2>
+        <p class="text-sm">A simple yet seemingly endless clicker game.</p>
+      </a>
+    </div>
+
+    <!-- More games go here -->
+    <!-- Example placeholder: -->
+    <!--
+    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
+      <a href="games/anothergame/index.html" class="block h-full">
+        <h2 class="text-xl font-semibold mb-1">Another Game</h2>
+        <p class="text-sm">Description here.</p>
+      </a>
+    </div>
+    -->
+
+  </main>
+</body>
+</html>

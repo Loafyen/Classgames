@@ -2,39 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Classgames</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    body {
-      background-color: #111;
+    :root {
+      --text-color: #f87171;
+    }
+
+    body.dark {
+      background-color: #000;
+      color: var(--text-color);
+    }
+
+    body.light {
+      background-color: #f9fafb;
+      color: #111;
+    }
+
+    .tile {
+      transition: all 0.3s;
+    }
+
+    body.dark .tile {
+      background-color: #1f2937;
+      color: var(--text-color);
+    }
+
+    body.light .tile {
+      background-color: #fff;
+      color: #111;
+      border: 1px solid #ddd;
+    }
+
+    .nav-btn {
+      transition: color 0.3s;
+      position: relative;
+      cursor: pointer;
+    }
+
+    body.dark .nav-btn {
+      color: var(--text-color);
+    }
+
+    body.light .nav-btn {
+      color: #444;
+    }
+
+    body.light .nav-btn:hover {
+      color: #222;
+    }
+
+    /* Tooltip styles */
+    .nav-btn .tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 0.5rem;
+      background-color: rgba(31, 41, 55, 0.9); /* Tailwind gray-800 with opacity */
       color: #fff;
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 100px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-in-out;
+      user-select: none;
+      z-index: 10;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-    }
-
-    a.button {
-      display: inline-block;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      color: #fff;
-      background-color: #00b894;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-
-    a.button:hover {
-      background-color: #019875;
+    .nav-btn:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
     }
   </style>
 </head>
-<body>
-  <h1>Classgames</h1>
-  <a class="button" href="gba.html">GBA Emulator</a>
+<body class="min-h-screen flex flex-col items-center px-6 py-10 transition-all" id="body">
+
+  <!-- Top Right Navigation -->
+  <div class="absolute top-6 right-6 flex space-x-4 text-2xl">
+    <a href="games.html" class="nav-btn">
+      🎮
+      <span class="tooltip">Games</span>
+    </a>
+    <a href="settings.html" class="nav-btn">
+      ⚙️
+      <span class="tooltip">Settings</span>
+    </a>
+  </div>
+
+  <!-- Site Title -->
+  <header class="mb-10 text-center">
+    <h1 class="text-5xl font-bold mb-2">🎓 Classgames</h1>
+    <p class="text-lg">Play smart. Play in class. Stay hidden.</p>
+  </header>
+
+  <!-- Main Section (Can be left empty or include some promo tiles) -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl">
+    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
+      <h2 class="text-xl font-semibold mb-1">Welcome</h2>
+      <p class="text-sm">Choose a game or change your settings!</p>
+    </div>
+  </section>
+
+  <!-- Script to Load Theme & Text Color -->
+  <script>
+    const savedColor = localStorage.getItem('classgames-text-color');
+    if (savedColor) {
+      document.documentElement.style.setProperty('--text-color', savedColor);
+    }
+
+    const theme = localStorage.getItem('classgames-theme');
+    if (theme === 'light') {
+      document.body.classList.add('light');
+    } else {
+      document.body.classList.add('dark');
+    }
+  </script>
 </body>
 </html>
