@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+  
+
+
+
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Classgames - Games</title>
+  <title>Classgames - Emulators</title>
   <script>
-    // Theme toggle script
     const theme = localStorage.getItem("theme") || "dark";
     document.documentElement.setAttribute("data-theme", theme);
   </script>
@@ -44,50 +48,22 @@
     <div class="space-x-4">
       <a href="index.html" class="text-lg hover:underline">Home</a>
       <a href="settings.html" class="text-lg hover:underline">Settings</a>
+      <a href="games.html" class="text-lg hover:underline">Games</a>
     </div>
   </header>
 
-  <!-- Games List -->
+  <!-- Emulator List -->
   <main class="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <!-- Cookie Clicker Tile -->
+    <!-- GBA Emulator Tile -->
     <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
-      <a href="games/cookieclicker/index.html" class="block h-full">
-        <h2 class="text-xl font-semibold mb-1">Cookie Clicker</h2>
-        <p class="text-sm">A simple yet seemingly endless clicker game.</p>
+      <a href="emulators/gba/index.html" class="block h-full">
+        <h2 class="text-xl font-semibold mb-1">GBA Emulator</h2>
+        <p class="text-sm">Play Game Boy Advance games right in your browser.</p>
       </a>
     </div>
-
-    <!-- N-Gon Tile -->
-    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
-      <a href="games/n-gon/index.html" class="block h-full">
-        <h2 class="text-xl font-semibold mb-1">N-Gon</h2>
-        <p class="text-sm">A geometric survival and movement game.</p>
-      </a>
-    </div>
-
-    <!--1v1.lol-->
-    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
-      <a href="games/htmlchess/example.html" class="block h-full">
-        <h2 class="text-xl font-semibold mb-1">Chess</h2>
-        <p class="text-sm">me trying to get this to work ↓</p>
-        <img src="imgs/suffermore.png" alt="suffering" class="w-32 h-32 mx-auto mt-2">
-      </a>
-    </div>
-    <!-- More games go here -->
-    <!-- Example placeholder: -->
-    <!--
-    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
-      <a href="games/anothergame/index.html" class="block h-full">
-        <h2 class="text-xl font-semibold mb-1">Another Game</h2>
-        <p class="text-sm">Description here.</p>
-      </a>
-    </div>
-    -->
-
   </main>
 
-  	<!--settings injection work pls?-->
-	<script src="settings.js"></script>
+  <script src="settings.js"></script>
 
 
 </body>

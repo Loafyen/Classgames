@@ -53,14 +53,13 @@
       color: #222;
     }
 
-    /* Tooltip styles */
     .nav-btn .tooltip {
       position: absolute;
       bottom: 100%;
       left: 50%;
       transform: translateX(-50%);
       margin-bottom: 0.5rem;
-      background-color: rgba(31, 41, 55, 0.9); /* Tailwind gray-800 with opacity */
+      background-color: rgba(31, 41, 55, 0.9);
       color: #fff;
       padding: 0.25rem 0.5rem;
       border-radius: 0.25rem;
@@ -91,6 +90,10 @@
       ⚙️
       <span class="tooltip">Settings</span>
     </a>
+    <a href="emulators.html" class="nav-btn">
+      🕹️
+      <span class="tooltip">Emulators</span>
+    </a>
   </div>
 
   <!-- Site Title -->
@@ -99,18 +102,29 @@
       <img src="imgs/Classgames.png" alt="Classgames Logo" class="w-32 h-32 mb-4 mx-auto">
     </div>
     <h1 class="text-5xl font-bold mb-2">🎓 Classgames</h1>
-    <p class="text-lg">Play smart. Play in class. Stay hidden.</p>
+    <p class="text-lg">All your favorite games in one website.</p>
   </header>
 
-  <!-- Main Section (Can be left empty or include some promo tiles) -->
+  <!-- News -->
   <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl">
     <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
       <h2 class="text-xl font-semibold mb-1">Welcome</h2>
       <p class="text-sm", style="align-content:center;">Choose a game or change your settings!</p>
     </div>
+    
     <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
       <h2 class="text-xl font-semibold mb-1">Check out Classplay</h2>
       <button class="text-sm", style="align-content:center; background:#111; border-radius: 5px;" onclick="window.open('https://useclassplay.vercel.app/')">Classplay Link</button>
+    </div>
+
+    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
+      <h2 class="text-xl font-semibold mb-1">Email "Loafyen@gmail.com" for requests of any type</h2>
+      <button class="text-sm", style="align-content:center; background:#111; border-radius: 5px;" onclick="window.open('https://mail.google.com/mail/u/0/#inbox?compose=new')">Email Me! (most likley will respond in 2-3 days)</button>
+    </div>
+
+    <div class="tile rounded-xl p-6 text-center shadow-md cursor-pointer">
+      <h2 class="text-xl font-semibold mb-1">Emulator games.</h2>
+      <button class="text-sm", style="align-content:center; background:#111; border-radius: 5px;" onclick="window.open('https://en.wikipedia.org/wiki/Online_piracy')">For obvious legal reasons I am not able to provide the emulator games but I believe in you. You can find it yourself :)</button>
     </div>
   </section>
 
@@ -128,5 +142,10 @@
       document.body.classList.add('dark');
     }
   </script>
+
+	<!--settings injection work pls?-->
+	<script src="settings.js"></script>
+
+
 </body>
 </html>

@@ -43,6 +43,9 @@
       color: var(--text-color);
     }
   </style>
+
+  <link id="favicon" rel="icon" href="favicon.ico" type="image/x-icon" />
+
 </head>
 <body class="min-h-screen px-6 py-10 transition-all" id="body">
 
@@ -90,6 +93,13 @@
       <input type="file" id="importFile" accept=\"application/json\" class="block mt-2" />
     </div>
 
+  <div>
+  <h2 class="text-xl font-semibold mb-2">Tab Cloaker</h2>
+  <button id="toggleCloaker" class="px-4 py-2 rounded bg-gray-600 text-white hover:bg-gray-500">
+    Enable Tab Cloaker
+  </button>
+</div>
+  
   </div>
 
   <script>
@@ -163,6 +173,32 @@
       };
       reader.readAsText(file);
     });
+  
+
+  const cloakerButton = document.getElementById('toggleCloaker');
+  const originalTitle = 'Settings - Classgames';
+  const cloakedTitle = 'Home | Schoology';
+  const originalFavicon = 'favicon.ico';
+  const cloakedFavicon = 'https://assets.schoology.com/sites/all/themes/schoology_theme/favicon.ico';
+
+  function applyCloaker(enabled) {
+    document.title = enabled ? cloakedTitle : originalTitle;
+    document.getElementById('favicon').href = enabled ? cloakedFavicon : originalFavicon;
+    cloakerButton.textContent = enabled ? 'Disable Tab Cloaker' : 'Enable Tab Cloaker';
+  }
+
+  const cloakerEnabled = localStorage.getItem('classgames-tab-cloaker') === 'true';
+  applyCloaker(cloakerEnabled);
+
+  cloakerButton.addEventListener('click', () => {
+    const enabled = localStorage.getItem('classgames-tab-cloaker') === 'true';
+    localStorage.setItem('classgames-tab-cloaker', !enabled);
+    applyCloaker(!enabled);
+  });
+
+
+localStorage.setItem('classgames-tab-cloaker', 'true');
+  
   </script>
 
 </body>
